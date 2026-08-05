@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excellence Studio | Premium Audio Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="audioEngine"></audio>
+
+    <div class="player-wrapper">
+        <div class="track-artwork-zone" id="artDisc">🎵</div>
+
+        <div class="meta-details">
+            <h2 id="uiTitle">Loading track...</h2>
+            <p id="uiArtist">Artist Profile</p>
+        </div>
+
+        <div class="timeline-container">
+            <input type="range" id="progressSlider" class="slider-input" min="0" max="100" value="0">
+            <div class="time-stamps">
+                <span id="timeCurrent">0:00</span>
+                <span id="timeTotal">0:00</span>
+            </div>
+        </div>
+
+        <div class="controls-deck">
+            <button class="control-btn" id="btnPrev" title="Previous Track">&#10092;&#10092;</button>
+            <button class="control-btn play-pause-toggle" id="btnPlayPause" title="Play/Pause">&#9658;</button>
+            <button class="control-btn" id="btnNext" title="Next Track">&#10093;&#10093;</button>
+        </div>
+
+        <div class="mixer-tray">
+            <span id="volIcon">🔊</span>
+            <input type="range" id="volumeSlider" class="slider-input" min="0" max="1" step="0.05" value="0.7">
+        </div>
+
+        <div class="playlist-container">
+            <div class="playlist-header">Track Queue</div>
+            <ul class="playlist-queue" id="uiQueue">
+                </ul>
+            <button onclick="addTrackToQueue('New Song Title', 'Artist Name', 'path-to-audio.mp3')">
+    Add Custom Track
+</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
