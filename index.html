@@ -3,11 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excellence Studio | Premium Audio Player</title>
+    <title>music_player</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 45%, #111827 100%);
+            color: #f8fafc;
+        }
+
+        .player-wrapper {
+            width: min(92vw, 540px);
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+        }
+
+        .controls-deck {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .control-btn {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 14px 28px rgba(59, 130, 246, 0.3);
+            filter: brightness(1.05);
+        }
+
+        .control-btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .play-pause-toggle {
+            width: 68px;
+            height: 68px;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            box-shadow: 0 12px 24px rgba(16, 185, 129, 0.28);
+        }
+
+        .btn-icon {
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .playlist-container button {
+            margin-top: 10px;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-weight: 600;
+            color: #ffffff;
+            background: linear-gradient(135deg, #f59e0b, #fb923c);
+            cursor: pointer;
+            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.2);
+        }
+    </style>
 </head>
 <body>
-
     <audio id="audioEngine"></audio>
 
     <div class="player-wrapper">
@@ -27,24 +107,20 @@
         </div>
 
         <div class="controls-deck">
-            <button class="control-btn" id="btnPrev" title="Previous Track">&#10092;&#10092;</button>
-            <button class="control-btn play-pause-toggle" id="btnPlayPause" title="Play/Pause">&#9658;</button>
-            <button class="control-btn" id="btnNext" title="Next Track">&#10093;&#10093;</button>
+            <button class="control-btn" id="btnPrev" title="Previous Track" aria-label="Previous Track" type="button"><span class="btn-icon">⏮</span></button>
+            <button class="control-btn play-pause-toggle" id="btnPlayPause" title="Play/Pause" aria-label="Play/Pause" type="button"><span class="btn-icon">▶</span></button>
+            <button class="control-btn" id="btnNext" title="Next Track" aria-label="Next Track" type="button"><span class="btn-icon">⏭</span></button>
         </div>
 
         <div class="mixer-tray">
             <span id="volIcon">🔊</span>
             <input type="range" id="volumeSlider" class="slider-input" min="0" max="1" step="0.05" value="0.7">
         </div>
-
-        <div class="playlist-container">
+        <section class="playlist-container">
             <div class="playlist-header">Track Queue</div>
-            <ul class="playlist-queue" id="uiQueue">
-                </ul>
-            <button onclick="addTrackToQueue('New Song Title', 'Artist Name', 'path-to-audio.mp3')">
-    Add Custom Track
-</button>
-        </div>
+            <ul class="playlist-queue" id="uiQueue"></ul>
+            <button type="button" onclick="addTrackToQueue('New Song Title', 'Artist Name', 'path-to-audio.mp3')">Add Custom Track</button>
+        </section>
     </div>
 
     <script src="script.js"></script>
